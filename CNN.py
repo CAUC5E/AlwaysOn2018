@@ -7,8 +7,8 @@ tf.set_random_seed(777)
 
 mnist = input_data.read_data_sets("MNIST_data/",one_hot=True)
 
-lr=0.01
-epochs=150
+lr=0.001
+training_epochs=15
 batch_size=256
 
 keep_prob = tf.placeholder(tf.float32)
@@ -47,7 +47,7 @@ b5 = tf.Variable(tf.random_normal([10]))
 logits = tf.matmul(L4, W5) + b5
 
 cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=Y))
-optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
+optimizer = tf.train.AdamOptimizer(learning_rate=lr).minimize(cost)
 
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
